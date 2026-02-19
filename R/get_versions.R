@@ -14,17 +14,17 @@ get_versions <- function(package, cache = .versions_index) {
 
   latest_row <- rvest::read_html(base_url) |>
     rvest::html_element(sprintf("tr:has(a[href^='%s'])", package))
-  latest_href <- latest_row |
-    rvest::html_element("a") |
+  latest_href <- latest_row |>
+    rvest::html_element("a") |>
     rvest::html_attr("href")
   latest_release <- strcapture(
     "(.*)_(.*)\\.tar\\.gz",
     latest_href,
     data.frame(package = character(), version = character())
   )
-  latest_release$date <- latest_row |
-    rvest::html_element("td:has(a) + td") |
-    rvest::html_text() |
+  latest_release$date <- latest_row |>
+    rvest::html_element("td:has(a) + td") |>
+    rvest::html_text() |>
     substr(1, 10)
   names(latest_release) <- c("package", "version", "date")
 
@@ -33,7 +33,7 @@ get_versions <- function(package, cache = .versions_index) {
       url <- file.path(base_url, "Archive", package)
       page <- rvest::read_html(url)
 
-      archive_hrefs <- rvest::html_elements(page, "tr > td > a") |
+      archive_hrefs <- rvest::html_elements(page, "tr > td > a") |>
         rvest::html_attr("href")
       rels <- strcapture(
         "(.*)_(.*)\\.tar\\.gz",
@@ -44,8 +44,8 @@ get_versions <- function(package, cache = .versions_index) {
       rels$date <- rvest::html_elements(
         page,
         "tr > td:has(a) + td"
-      ) |
-        rvest::html_text() |
+      ) |>
+        rvest::html_text() |>
         substr(1, 10)
 
       names(rels) <- c("package", "version", "date")

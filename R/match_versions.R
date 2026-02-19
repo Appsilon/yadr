@@ -4,8 +4,8 @@
 #' @param deps data.frame(type, package, version)
 #' @param cache mutable env
 match_versions <- function(description, deps, cache = .versions_index) {
-  release_date <- description$get_field("Date/Publication") |
-    substr(1, 10) |
+  release_date <- description$get_field("Date/Publication") |>
+    substr(1, 10) |>
     as.Date()
 
   dep_versions <- c()
