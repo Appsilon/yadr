@@ -5,12 +5,13 @@
 #' @param version character(1)
 #' @param description_cache mutable env
 #' @param versions_cache mutable env
+#' @param recursive_resolution_limit integer(1)
 get_solution <- function(
   package,
   version,
   description_cache = .description_index,
   versions_cache = .versions_index,
-  recursive_resolution_limit = 1000
+  recursive_resolution_limit = 1000L
 ) {
   main_description <- get_description(
     package,

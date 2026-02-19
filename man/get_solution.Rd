@@ -11,7 +11,7 @@ get_solution(
   version,
   description_cache = .description_index,
   versions_cache = .versions_index,
-  recursive_resolution_limit = 1000
+  recursive_resolution_limit = 1000L
 )
 }
 \arguments{
@@ -22,6 +22,8 @@ get_solution(
 \item{description_cache}{mutable env}
 
 \item{versions_cache}{mutable env}
+
+\item{recursive_resolution_limit}{integer(1)}
 }
 \description{
 Get a complete tree of dependencies for a package.
