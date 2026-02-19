@@ -6,6 +6,11 @@
 \usage{
 .onLoad(libname, pkgname)
 }
+\arguments{
+\item{libname}{builtin}
+
+\item{pkgname}{builtin}
+}
 \description{
 Run logic when package is loaded
 }

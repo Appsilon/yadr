@@ -3,6 +3,7 @@
 #' TODO: work beyond CRAN
 #' @param package character(1)
 #' @param index mutable env
+#' @importFrom utils strcapture
 #' @importFrom rvest read_html html_elements html_attr html_text
 #' @export
 get_versions <- function(package, cache = .versions_index) {
@@ -17,7 +18,7 @@ get_versions <- function(package, cache = .versions_index) {
   latest_href <- latest_row |>
     rvest::html_element("a") |>
     rvest::html_attr("href")
-  latest_release <- strcapture(
+  latest_release <- utils::strcapture(
     "(.*)_(.*)\\.tar\\.gz",
     latest_href,
     data.frame(package = character(), version = character())
@@ -35,7 +36,7 @@ get_versions <- function(package, cache = .versions_index) {
 
       archive_hrefs <- rvest::html_elements(page, "tr > td > a") |>
         rvest::html_attr("href")
-      rels <- strcapture(
+      rels <- utils::strcapture(
         "(.*)_(.*)\\.tar\\.gz",
         archive_hrefs,
         data.frame(package = character(), version = character())
