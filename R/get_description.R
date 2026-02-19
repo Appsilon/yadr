@@ -41,9 +41,6 @@ get_description <- function(package, version, cache = .description_index) {
 
   description <- desc::desc(file = file.path(dir, package))
 
-  unlink(path)
-  unlink(dir, recursive = TRUE, force = TRUE)
-
   if (is.null(cache[[package]])) {
     cache[[package]] <- list()
   }
