@@ -1,6 +1,6 @@
 testthat::test_that("get_tree", {
-  package <- "rlang"
-  version <- "1.0.1"
+  package <- "R6"
+  version <- "2.6.0"
 
   tree <- get_tree(package, version)
 
