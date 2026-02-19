@@ -3,7 +3,6 @@
 \name{get_versions}
 \alias{get_versions}
 \title{Get a list of package versions
-TODO: get latest version
 TODO: work beyond r-project's mirror of CRAN
 TODO: work beyond CRAN}
 \usage{
@@ -16,7 +15,6 @@ get_versions(package, cache = .versions_index)
 }
 \description{
 Get a list of package versions
-TODO: get latest version
 TODO: work beyond r-project's mirror of CRAN
 TODO: work beyond CRAN
 }

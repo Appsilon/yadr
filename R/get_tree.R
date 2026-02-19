@@ -1,3 +1,6 @@
+#' Get a complete tree of dependencies for a package.
+#' We are interested in hard+soft dependencies of the package itself,
+#' as well as hard dependencies of all its direct dependencies.
 #' @param package character(1)
 #' @param version character(1)
 #' @param description_cache mutable env
