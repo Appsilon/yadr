@@ -2,8 +2,8 @@
 #' that was avaiable before package release
 #' @param description desc::desc
 #' @param deps data.frame(type, package, version)
-#' @param cache mutable env
-match_versions <- function(description, deps, cache = .versions_index) {
+#' @param index mutable env
+match_versions <- function(description, deps, index = .versions_index) {
   release_date <- description$get_field("Date/Publication") |>
     substr(1, 10) |>
     as.Date()
@@ -11,7 +11,7 @@ match_versions <- function(description, deps, cache = .versions_index) {
   dep_versions <- c()
 
   for (pkg in deps$package) {
-    versions <- get_versions(pkg, cache = cache)
+    versions <- get_versions(pkg, index = index)
     versions <- versions[versions$date <= release_date, ]
     dep_versions <- c(
       dep_versions,

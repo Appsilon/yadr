@@ -5,14 +5,14 @@
 \title{For each package dependency assign the latest version
 that was avaiable before package release}
 \usage{
-match_versions(description, deps, cache = .versions_index)
+match_versions(description, deps, index = .versions_index)
 }
 \arguments{
 \item{description}{desc::desc}
 
 \item{deps}{data.frame(type, package, version)}
 
-\item{cache}{mutable env}
+\item{index}{mutable env}
 }
 \description{
 For each package dependency assign the latest version

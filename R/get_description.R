@@ -1,14 +1,14 @@
 #' Download package tarball and parse the DESCRIPTION
 #' @param package character(1)
 #' @param version character(1)
-#' @param cache mutable env
+#' @param index mutable env
 #' @importFrom desc desc
 #' @importFrom utils contrib.url download.file untar
 #' @export
-get_description <- function(package, version, cache = .description_index) {
-  if (!is.null(cache[[package]])) {
-    if (!is.null(cache[[package]][[version]])) {
-      return(cache[[package]][[version]])
+get_description <- function(package, version, index = .description_index) {
+  if (!is.null(index[[package]])) {
+    if (!is.null(index[[package]][[version]])) {
+      return(index[[package]][[version]])
     }
   }
 
@@ -40,11 +40,11 @@ get_description <- function(package, version, cache = .description_index) {
 
   description <- desc::desc(file = file.path(dir, package))
 
-  if (is.null(cache[[package]])) {
-    cache[[package]] <- list()
+  if (is.null(index[[package]])) {
+    index[[package]] <- list()
   }
 
-  cache[[package]][[version]] <- description
+  index[[package]][[version]] <- description
 
   description
 }

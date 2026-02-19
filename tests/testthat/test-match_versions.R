@@ -2,8 +2,8 @@ test_that("match_versions", {
   package <- "yadr"
   version <- "0.0.1"
 
-  description_cache <- list(yadr = list("0.0.1" = desc::description$new()))
-  versions_cache <- list(
+  description_index <- list(yadr = list("0.0.1" = desc::description$new()))
+  versions_index <- list(
     yadr = data.frame(
       package = "yadr",
       version = "0.0.1",
@@ -31,10 +31,10 @@ test_that("match_versions", {
     )
   )
 
-  description <- get_description(package, version, cache = description_cache)
+  description <- get_description(package, version, index = description_index)
   dependencies <- get_dependencies(description)
-  versions <- get_versions(package, cache = versions_cache)
+  versions <- get_versions(package, index = versions_index)
 
-  result <- match_versions(description, dependencies, cache = versions_cache)
+  result <- match_versions(description, dependencies, index = versions_index)
   testthat::expect_s3_class(result, "data.frame")
 })

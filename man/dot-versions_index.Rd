@@ -3,7 +3,7 @@
 \docType{data}
 \name{.versions_index}
 \alias{.versions_index}
-\title{Shared index of package versions that acts as package-level cache}
+\title{Shared index of package versions}
 \format{
 An object of class \code{environment} of length 0.
 }
@@ -11,6 +11,6 @@ An object of class \code{environment} of length 0.
 .versions_index
 }
 \description{
-Shared index of package versions that acts as package-level cache
+Shared index of package versions
 }
 \keyword{datasets}

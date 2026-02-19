@@ -4,14 +4,14 @@
 \alias{get_description}
 \title{Download package tarball and parse the DESCRIPTION}
 \usage{
-get_description(package, version, cache = .description_index)
+get_description(package, version, index = .description_index)
 }
 \arguments{
 \item{package}{character(1)}
 
 \item{version}{character(1)}
 
-\item{cache}{mutable env}
+\item{index}{mutable env}
 }
 \description{
 Download package tarball and parse the DESCRIPTION

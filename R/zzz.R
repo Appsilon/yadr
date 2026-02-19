@@ -1,11 +1,19 @@
 #' List of packages that shuold be ignored when fetching dependencies
 .base_packages <- c("R", rownames(installed.packages(priority = "base")))
 
-#' Shared index of package descriptions that acts as a cache
-.description_index <- new.env()
+#' Shared index of package descriptions
+.description_index <- readRDS(system.file(
+  "descriptions.rds",
+  package = "yadr",
+  mustWork = TRUE
+))
 
-#' Shared index of package versions that acts as package-level cache
-.versions_index <- new.env()
+#' Shared index of package versions
+.versions_index <- readRDS(system.file(
+  "versions.rds",
+  package = "yadr",
+  mustWork = TRUE
+))
 
 #' Run logic when package is loaded
 #' @param libname builtin

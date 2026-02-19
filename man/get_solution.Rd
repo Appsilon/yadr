@@ -9,8 +9,8 @@ as well as hard dependencies of all its direct dependencies.}
 get_solution(
   package,
   version,
-  description_cache = .description_index,
-  versions_cache = .versions_index,
+  description_index = .description_index,
+  versions_index = .versions_index,
   recursive_resolution_limit = 1000L
 )
 }
@@ -19,9 +19,9 @@ get_solution(
 
 \item{version}{character(1)}
 
-\item{description_cache}{mutable env}
+\item{description_index}{mutable env}
 
-\item{versions_cache}{mutable env}
+\item{versions_index}{mutable env}
 
 \item{recursive_resolution_limit}{integer(1)}
 }

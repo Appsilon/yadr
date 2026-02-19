@@ -3,20 +3,20 @@
 #' as well as hard dependencies of all its direct dependencies.
 #' @param package character(1)
 #' @param version character(1)
-#' @param description_cache mutable env
-#' @param versions_cache mutable env
+#' @param description_index mutable env
+#' @param versions_index mutable env
 #' @param recursive_resolution_limit integer(1)
 get_solution <- function(
   package,
   version,
-  description_cache = .description_index,
-  versions_cache = .versions_index,
+  description_index = .description_index,
+  versions_index = .versions_index,
   recursive_resolution_limit = 1000L
 ) {
   main_description <- get_description(
     package,
     version,
-    cache = description_cache
+    index = description_index
   )
   direct_dependencies <- get_dependencies(main_description)
   direct_dependencies <- match_versions(main_description, direct_dependencies)
@@ -39,7 +39,7 @@ get_solution <- function(
     sub_description <- get_description(
       dep$package,
       dep$version,
-      cache = description_cache
+      index = description_index
     )
 
     deps <- get_dependencies(
@@ -47,7 +47,7 @@ get_solution <- function(
       types = c("Depends", "Imports")
     )
 
-    deps <- match_versions(main_description, deps, cache = versions_cache)
+    deps <- match_versions(main_description, deps, index = versions_index)
 
     recursive_dependencies[[paste(dep$package, dep$version, sep = "@")]] <- deps
     resolution_queue <- rbind(resolution_queue, deps)

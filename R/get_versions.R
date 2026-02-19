@@ -2,13 +2,13 @@
 #' TODO: work beyond r-project's mirror of CRAN
 #' TODO: work beyond CRAN
 #' @param package character(1)
-#' @param cache mutable env
+#' @param index mutable env
 #' @importFrom utils strcapture contrib.url
 #' @importFrom rvest read_html html_elements html_attr html_text
 #' @export
-get_versions <- function(package, cache = .versions_index) {
-  if (!is.null(cache[[package]])) {
-    return(cache[[package]])
+get_versions <- function(package, index = .versions_index) {
+  if (!is.null(index[[package]])) {
+    return(index[[package]])
   }
 
   base_url <- utils::contrib.url(repos = getOption("repos"))
@@ -64,7 +64,7 @@ get_versions <- function(package, cache = .versions_index) {
   releases <- rbind(archive_releases, latest_release)
   releases$date <- as.Date(releases$date)
 
-  cache[[package]] <- releases
+  index[[package]] <- releases
 
   releases
 }

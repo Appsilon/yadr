@@ -3,7 +3,7 @@
 \docType{data}
 \name{.description_index}
 \alias{.description_index}
-\title{Shared index of package descriptions that acts as a cache}
+\title{Shared index of package descriptions}
 \format{
 An object of class \code{environment} of length 0.
 }
@@ -11,6 +11,6 @@ An object of class \code{environment} of length 0.
 .description_index
 }
 \description{
-Shared index of package descriptions that acts as a cache
+Shared index of package descriptions
 }
 \keyword{datasets}

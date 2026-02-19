@@ -6,12 +6,12 @@
 TODO: work beyond r-project's mirror of CRAN
 TODO: work beyond CRAN}
 \usage{
-get_versions(package, cache = .versions_index)
+get_versions(package, index = .versions_index)
 }
 \arguments{
 \item{package}{character(1)}
 
-\item{cache}{mutable env}
+\item{index}{mutable env}
 }
 \description{
 Get a list of package versions
