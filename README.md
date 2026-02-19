@@ -1,13 +1,14 @@
-# YADR
+# YADR - Yet Another Dependency Resolver
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/Appsilon/yadr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Appsilon/yadr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Yet Another Dependency Resolver - `yadr` - is aimed
-specifically at dependency resolution for archive versions of packages.
+`yadr` aims to be a complementary package to `pkgdepends` for situations
+when there is a need to resolve dependencies for an archive version of
+a CRAN package.
 
-Unlike `pkgdepends` it attempts to respect versions of package dependnecies
+Unlike `pkgdepends` it respects versions of package dependnecies
 that were "latest" at the time of package release - not at the time of
 dependency resolution.
 
