@@ -9,7 +9,9 @@
 
 #' Run logic when package is loaded
 .onLoad <- function(libname, pkgname) {
-  message("YADR only supports official cran mirror.")
-  message("Setting CRAN mirror to cran.r-project.org.")
+  packageStartupMessage(
+    "YADR only supports official cran mirror. ",
+    "Setting CRAN mirror to cran.r-project.org."
+  )
   options(repos = "https://cran.r-project.org/")
 }
