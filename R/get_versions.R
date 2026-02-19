@@ -2,7 +2,7 @@
 #' TODO: work beyond r-project's mirror of CRAN
 #' TODO: work beyond CRAN
 #' @param package character(1)
-#' @param index mutable env
+#' @param cache mutable env
 #' @importFrom utils strcapture
 #' @importFrom rvest read_html html_elements html_attr html_text
 #' @export

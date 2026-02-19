@@ -11,7 +11,7 @@ get_versions(package, cache = .versions_index)
 \arguments{
 \item{package}{character(1)}
 
-\item{index}{mutable env}
+\item{cache}{mutable env}
 }
 \description{
 Get a list of package versions
