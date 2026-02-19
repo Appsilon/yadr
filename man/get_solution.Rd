@@ -10,7 +10,8 @@ get_solution(
   package,
   version,
   description_cache = .description_index,
-  versions_cache = .versions_index
+  versions_cache = .versions_index,
+  recursive_resolution_limit = 1000
 )
 }
 \arguments{
