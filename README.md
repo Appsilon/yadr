@@ -14,15 +14,15 @@ dependency resolution.
 ## Installation
 
 ```R
-remotes::install_github("Appsilon/yadr")
+pak::pak("Appsilon/yadr")
 ```
 
 ## Usage
 
 ```R
 library(yadr)
-dependencies <- yadr::get_tree(package = "rlang", version = "1.0.1")
-pkg_refs <- yadr::make_refs(dependencies)
+dependencies <- yadr::get_solution(package = "rlang", version = "1.0.1")
+pkg_refs <- yadr::as_refs(dependencies)
 pak::pak(pkg_refs)
 ```
 
