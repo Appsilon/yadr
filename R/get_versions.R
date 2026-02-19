@@ -8,11 +8,8 @@
 #' @export
 get_versions <- function(package, cache = .versions_index) {
   if (!is.null(cache[[package]])) {
-    cat("Cache hit: versions of", package, "\n")
     return(cache[[package]])
   }
-
-  cat("Cache miss: versions of", package, "\n")
 
   base_url <- contrib.url(repos = getOption("repos"))
 

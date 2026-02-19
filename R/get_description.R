@@ -26,12 +26,10 @@ get_description <- function(package, version, cache = .description_index) {
 
   tryCatch(
     expr = {
-      print("Trying current url...")
-      download.file(url_current, path, quiet = TRUE)
+      suppressWarnings(download.file(url_current, path, quiet = TRUE))
     },
     error = function(e) {
-      print("Trying archive url...")
-      download.file(url_archive, path, quiet = TRUE)
+      suppressWarnings(download.file(url_archive, path, quiet = TRUE))
     }
   )
 
