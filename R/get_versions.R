@@ -53,7 +53,6 @@ get_versions <- function(package, cache = .versions_index) {
       rels[!is.na(rels$package), ]
     },
     error = function(e) {
-      return
       data.frame(
         package = character(),
         version = character(),
