@@ -1,13 +1,10 @@
 #' List of packages that shuold be ignored when fetching dependencies
 .base_packages <- c("R", rownames(installed.packages(priority = "base")))
 
-#' Shared index of package descriptions that acts as a cache:
-#' i.e. package -> version -> DESCRIPTION.
-#' e.g. .description_index[["rlang"]][["1.0.1"]] == desc::description$new()
+#' Shared index of package descriptions that acts as a cache
 .description_index <- new.env()
 
-#' Shared index of package versions that acts as package-level cache:
-#' i.e. package -> data.frame(package, version, date)
+#' Shared index of package versions that acts as package-level cache
 .versions_index <- new.env()
 
 #' Run logic when package is loaded

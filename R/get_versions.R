@@ -4,8 +4,8 @@
 #' TODO: work beyond CRAN
 #' @param package character(1)
 #' @param index mutable env
-#' @importFrom rvest read_html,html_elements,html_attr,html_text
-#' @importFrom stringr str_extract,str_sub
+#' @importFrom rvest read_html html_elements html_attr html_text
+#' @importFrom stringr str_extract str_sub
 #' @export
 get_versions <- function(package, cache = .versions_index) {
   if (!is.null(cache[[package]])) {

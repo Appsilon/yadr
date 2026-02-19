@@ -1,3 +1,4 @@
+#' Download package tarball and parse the DESCRIPTION
 #' @param package character(1)
 #' @param version character(1)
 #' @param cache mutable env
