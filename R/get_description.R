@@ -1,8 +1,15 @@
 #' @param package character(1)
 #' @param version character(1)
+#' @param cache mutable env
 #' @importFrom desc desc
 #' @export
-get_description <- function(package, version) {
+get_description <- function(package, version, cache = .description_index) {
+  if (!is.null(cache[[package]])) {
+    if (!is.null(cache[[package]][[version]])) {
+      return(cache[[package]][[version]])
+    }
+  }
+
   base_url <- contrib.url(repos = getOption("repos"))
 
   if (length(base_url) > 1) {
@@ -35,6 +42,12 @@ get_description <- function(package, version) {
 
   unlink(path)
   unlink(dir, recursive = TRUE, force = TRUE)
+
+  if (is.null(cache[[package]])) {
+    cache[[package]] <- list()
+  }
+
+  cache[[package]][[version]] <- description
 
   description
 }
