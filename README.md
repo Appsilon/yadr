@@ -237,3 +237,74 @@ deps <- solution[order(solution$package), c("package", "version")]
 rownames(deps) <- NULL
 deps
 ```
+
+```txt
+       package version
+1      askpass     1.1
+2    base64enc   0.1-3
+3         brio   1.1.3
+4        callr   3.7.0
+5          cli   3.1.1
+6        clipr   0.7.1
+7         covr   3.5.1
+8       crayon   1.4.2
+9  credentials   1.3.2
+10        curl   4.3.2
+11        desc   1.4.0
+12     diffobj   0.3.5
+13      digest  0.6.29
+14    ellipsis   0.3.2
+15    evaluate    0.14
+16       fansi   1.0.2
+17     fastmap   1.1.0
+18          fs   1.5.2
+19        gert   1.5.0
+20          gh   1.3.0
+21    gitcreds   0.1.1
+22        glue   1.6.1
+23       highr     0.9
+24   htmltools   0.5.2
+25        httr   1.4.2
+26         ini   0.3.1
+27   jquerylib   0.1.4
+28    jsonlite   1.7.3
+29       knitr    1.37
+30    lazyeval   0.2.2
+31   lifecycle   1.0.1
+32    magrittr   2.0.2
+33        mime    0.12
+34     openssl   1.4.6
+35      pillar   1.7.0
+36   pkgconfig   2.0.3
+37     pkgload   1.2.4
+38      praise   1.0.0
+39    processx   3.5.2
+40          ps   1.6.0
+41       purrr   0.3.4
+42          R6   2.5.1
+43    rappdirs   0.3.3
+44    rematch2   2.1.2
+45         rex   1.2.1
+46       rlang   1.0.1
+47   rmarkdown    2.11
+48   rprojroot   2.0.2
+49  rstudioapi    0.13
+50     stringi   1.7.6
+51     stringr   1.4.0
+52         sys     3.4
+53    testthat   3.1.2
+54      tibble   3.1.6
+55     tinytex    0.36
+56     usethis   2.1.5
+57        utf8   1.2.2
+58       vctrs   0.3.8
+59       waldo   0.3.1
+60     whisker     0.4
+61       withr   2.4.3
+62        xfun    0.29
+63        yaml   2.2.2
+64         zip   2.2.0
+```
+
+As we can see, the result is identical to what `pkgdepends` produces from a CRAN
+snapshot.
