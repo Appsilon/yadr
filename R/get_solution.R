@@ -5,7 +5,7 @@
 #' @param version character(1)
 #' @param description_cache mutable env
 #' @param versions_cache mutable env
-get_tree <- function(
+get_solution <- function(
   package,
   version,
   description_cache = .description_index,
