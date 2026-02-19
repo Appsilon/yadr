@@ -49,7 +49,7 @@ get_versions <- function(package, cache = .versions_index) {
         stringr::str_sub(1, 10)
 
       names(rels) <- c("package", "version", "date")
-      rels[!is.na(releases$package), ]
+      rels[!is.na(rels$package), ]
     },
     error = function(e) {
       return
