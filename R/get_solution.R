@@ -44,5 +44,7 @@ get_solution <- function(
 
   all <- all[!duplicated(all[, c("package", "version")]), ]
 
+  rownames(all) <- NULL
+
   all
 }
