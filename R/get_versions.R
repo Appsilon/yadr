@@ -1,5 +1,4 @@
 #' Get a list of package versions
-#' TODO: get latest version
 #' TODO: work beyond r-project's mirror of CRAN
 #' TODO: work beyond CRAN
 #' @param package character(1)
@@ -17,20 +16,52 @@ get_versions <- function(package, cache = .versions_index) {
 
   base_url <- contrib.url(repos = getOption("repos"))
 
-  url <- file.path(base_url, "Archive", package)
-  page <- rvest::read_html(url)
-
-  releases <- rvest::html_elements(page, "tr > td > a") |>
+  latest_row <- rvest::read_html(base_url) |>
+    rvest::html_element(sprintf("tr:has(a[href^='%s'])", package))
+  latest_release <- latest_row |>
+    rvest::html_element("a") |>
     rvest::html_attr("href") |>
     stringr::str_extract("(.*)_(.*)\\.tar\\.gz", group = c(1, 2)) |>
+    matrix(ncol = 2) |>
     as.data.frame()
-
-  releases$date <- rvest::html_elements(page, "tr > td:has(a) + td") |>
+  latest_release$date <- latest_row |>
+    rvest::html_element("td:has(a) + td") |>
     rvest::html_text() |>
     stringr::str_sub(1, 10)
+  names(latest_release) <- c("package", "version", "date")
 
-  names(releases) <- c("package", "version", "date")
-  releases <- releases[!is.na(releases$package), ]
+  archive_releases <- tryCatch(
+    expr = {
+      url <- file.path(base_url, "Archive", package)
+      page <- rvest::read_html(url)
+
+      rels <- rvest::html_elements(page, "tr > td > a") |>
+        rvest::html_attr("href") |>
+        stringr::str_extract("(.*)_(.*)\\.tar\\.gz", group = c(1, 2)) |>
+        matrix(ncol = 2) |>
+        as.data.frame()
+
+      rels$date <- rvest::html_elements(
+        page,
+        "tr > td:has(a) + td"
+      ) |>
+        rvest::html_text() |>
+        stringr::str_sub(1, 10)
+
+      names(rels) <- c("package", "version", "date")
+      rels[!is.na(releases$package), ]
+    },
+    error = function(e) {
+      return
+      data.frame(
+        package = character(),
+        version = character(),
+        date = character()
+      )
+    }
+  )
+
+  releases <- rbind(archive_releases, latest_release)
   releases$date <- as.Date(releases$date)
 
   cache[[package]] <- releases
