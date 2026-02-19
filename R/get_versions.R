@@ -15,7 +15,9 @@ get_versions <- function(package, cache = .versions_index) {
 
   cat("Cache miss: versions of", package, "\n")
 
-  url <- file.path(BASE_URL, "Archive", package)
+  base_url <- contrib.url(repos = getOption("repos"))
+
+  url <- file.path(base_url, "Archive", package)
   page <- rvest::read_html(url)
 
   releases <- rvest::html_elements(page, "tr > td > a") |>
