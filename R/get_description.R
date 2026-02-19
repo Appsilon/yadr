@@ -3,6 +3,7 @@
 #' @param version character(1)
 #' @param cache mutable env
 #' @importFrom desc desc
+#' @importFrom utils contrib.url download.file untar
 #' @export
 get_description <- function(package, version, cache = .description_index) {
   if (!is.null(cache[[package]])) {
@@ -26,16 +27,16 @@ get_description <- function(package, version, cache = .description_index) {
 
   tryCatch(
     expr = {
-      suppressWarnings(download.file(url_current, path, quiet = TRUE))
+      suppressWarnings(utils::download.file(url_current, path, quiet = TRUE))
     },
     error = function(e) {
-      suppressWarnings(download.file(url_archive, path, quiet = TRUE))
+      suppressWarnings(utils::download.file(url_archive, path, quiet = TRUE))
     }
   )
 
   dir <- tempdir()
 
-  untar(path, exdir = dir)
+  utils::untar(path, exdir = dir)
 
   description <- desc::desc(file = file.path(dir, package))
 

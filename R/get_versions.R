@@ -3,7 +3,7 @@
 #' TODO: work beyond CRAN
 #' @param package character(1)
 #' @param cache mutable env
-#' @importFrom utils strcapture
+#' @importFrom utils strcapture contrib.url
 #' @importFrom rvest read_html html_elements html_attr html_text
 #' @export
 get_versions <- function(package, cache = .versions_index) {
@@ -11,7 +11,7 @@ get_versions <- function(package, cache = .versions_index) {
     return(cache[[package]])
   }
 
-  base_url <- contrib.url(repos = getOption("repos"))
+  base_url <- utils::contrib.url(repos = getOption("repos"))
 
   latest_row <- rvest::read_html(base_url) |>
     rvest::html_element(sprintf("tr:has(a[href^='%s'])", package))
