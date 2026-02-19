@@ -10,7 +10,7 @@
 #' Run logic when package is loaded
 #' @param libname builtin
 #' @param pkgname builtin
-.onLoad <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) {
   packageStartupMessage(
     "YADR only supports official cran mirror. ",
     "Setting CRAN mirror to cran.r-project.org."
