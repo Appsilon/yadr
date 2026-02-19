@@ -3,6 +3,6 @@ test_that("get_dependencies", {
   deps <- get_dependencies(description)
   testthat::expect_equal(
     deps$package,
-    c("desc", "rvest", "stringr", "testthat")
+    c("desc", "rvest", "testthat")
   )
 })
