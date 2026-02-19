@@ -8,7 +8,7 @@ get_dependencies <- function(
 ) {
   deps <- description$get_deps()
   deps <- deps[deps$type %in% types, ]
-  deps <- deps[!deps$package %in% BASE_PACKAGES, ]
+  deps <- deps[!deps$package %in% .base_packages, ]
 
   deps
 }
