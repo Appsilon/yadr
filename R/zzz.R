@@ -8,6 +8,8 @@
 .versions_index <- new.env()
 
 #' Run logic when package is loaded
+#' @param libname builtin
+#' @param pkgname builtin
 .onLoad <- function(libname, pkgname) {
   packageStartupMessage(
     "YADR only supports official cran mirror. ",
