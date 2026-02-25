@@ -3,6 +3,7 @@
 export(get_dependencies)
 export(get_description)
 export(get_r_versions)
+export(get_tarball)
 export(get_versions)
 importFrom(desc,desc)
 importFrom(rvest,html_attr)
