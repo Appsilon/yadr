@@ -15,9 +15,9 @@ jobs:
 
       - name: Download PACKAGES file
         run: |
-          DATE=$(date -u '+%Y-%m-%d')
-          curl -fsSL https://cran.r-project.org/src/contrib/PACKAGES \
-            -o "inst/packages/$DATE"
+          REPO_PATH="inst/repos/$(date -u '+%Y-%m-%d')/src/contrib"
+          mkdir -p $REPO_PATH
+          curl -fsSL https://cran.r-project.org/src/contrib/PACKAGES -o $REPO_PATH/PACKAGES
 
       - name: Commit and push
         run: |
