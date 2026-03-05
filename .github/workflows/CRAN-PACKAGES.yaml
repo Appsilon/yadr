@@ -1,0 +1,27 @@
+name: Download CRAN PACKAGES
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download PACKAGES file
+        run: |
+          DATE=$(date -u '+%Y-%m-%d')
+          curl -fsSL https://cran.r-project.org/src/contrib/PACKAGES \
+            -o "inst/packages/$DATE"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          DATE=$(date -u '+%Y-%m-%d')
+          git add "inst/packages/$DATE"
+          git diff --cached --quiet || git commit -m "chore: add CRAN PACKAGES for $DATE"
+          git push
