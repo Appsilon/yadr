@@ -6,6 +6,7 @@
 #' @param description_index mutable env
 #' @param versions_index mutable env
 #' @param recursive_resolution_limit integer(1)
+#' @importFrom cli cli_progress_bar cli_progress_update cli_progress_done
 #' @export
 get_solution <- function(
   package,
@@ -27,6 +28,16 @@ get_solution <- function(
 
   current_recursion_depth <- 0
 
+  cli::cli_progress_bar(
+    format = paste0(
+      "{cli::pb_spin} Resolving {.pkg {cli::pb_extra$package}} ",
+      "[{cli::pb_current} resolved | {cli::pb_extra$queued} queued] ",
+      "{cli::pb_elapsed}"
+    ),
+    total = NA,
+    extra = list(package = "", queued = NROW(resolution_queue))
+  )
+
   while (NROW(resolution_queue) > 0) {
     current_recursion_depth <- current_recursion_depth + 1
 
@@ -36,6 +47,13 @@ get_solution <- function(
 
     dep <- as.list(resolution_queue[1, ])
     resolution_queue <- resolution_queue[-1, ]
+
+    cli::cli_progress_update(
+      extra = list(
+        package = paste(dep$package, dep$version, sep = "@"),
+        queued = NROW(resolution_queue)
+      )
+    )
 
     sub_description <- get_description(
       dep$package,
@@ -53,6 +71,8 @@ get_solution <- function(
     recursive_dependencies[[paste(dep$package, dep$version, sep = "@")]] <- deps
     resolution_queue <- rbind(resolution_queue, deps)
   }
+
+  cli::cli_progress_done()
 
   recursive_dependencies <- do.call(rbind, recursive_dependencies)
 
