@@ -6,6 +6,7 @@
 #' @param description_index mutable env
 #' @param versions_index mutable env
 #' @param recursive_resolution_limit integer(1)
+#' @export
 get_solution <- function(
   package,
   version,
