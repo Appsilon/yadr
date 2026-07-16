@@ -4,4 +4,4 @@
 ^[.]?air[.]toml$
 ^\.vscode$
 ^\.github$
-^cran-snapshots/
+^cran-snapshots$
