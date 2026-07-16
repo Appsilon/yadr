@@ -5,6 +5,11 @@
 #' @importFrom desc desc
 #' @export
 get_description <- function(package, version, index = .description_index) {
+  cached <- index[[package]][[version]]
+  if (!is.null(cached)) {
+    return(cached)
+  }
+
   path <- tempfile()
   dir <- tempdir()
 
